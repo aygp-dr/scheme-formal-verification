@@ -3,6 +3,11 @@
 #+DATE: 2025-08-02
 #+PROPERTY: header-args:scheme :session *guile* :results output :exports both
 
+[[https://github.com/aygp-dr/scheme-formal-verification][https://img.shields.io/badge/Guile-Scheme-blue.svg]]
+[[https://github.com/aygp-dr/scheme-formal-verification/actions][https://img.shields.io/github/actions/workflow/status/aygp-dr/scheme-formal-verification/ci.yml?branch=main]]
+[[https://github.com/aygp-dr/scheme-formal-verification/blob/main/LICENSE][https://img.shields.io/badge/License-MIT-green.svg]]
+[[https://github.com/aygp-dr/scheme-formal-verification/issues][https://img.shields.io/github/issues/aygp-dr/scheme-formal-verification.svg]]
+
 * Guile Scheme Formal Verification Toolkit
 
 A comprehensive toolkit for formal verification using Guile Scheme, integrating TLA+ specifications with executable Scheme implementations.

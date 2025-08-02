@@ -1,0 +1,62 @@
+gantt
+    title Guile Scheme Formal Verification Toolkit - Development Roadmap
+    dateFormat  YYYY-MM-DD
+    section Foundation
+    Project Setup           :done,    setup, 2025-08-02, 1d
+    Dependencies Install    :active,  deps, 2025-08-03, 2d
+    Core Module Structure   :         struct, after deps, 3d
+    Basic TLA+ Parser       :         parser, after struct, 5d
+    
+    section Core Engine
+    Property Testing Framework :      prop-test, after parser, 7d
+    Scheme AST Integration     :      ast-int, after prop-test, 4d
+    Model Checker Interface    :      model-check, after ast-int, 6d
+    Shrinking Algorithm        :      shrink, after model-check, 5d
+    
+    section TLA+ Integration
+    TLA+ Specification Parser  :      tla-parse, after shrink, 8d
+    Action Translation Engine  :      action-trans, after tla-parse, 6d
+    Temporal Logic Checker     :      temporal, after action-trans, 7d
+    Invariant Verification     :      invariant, after temporal, 5d
+    
+    section Testing & Validation
+    Unit Test Suite           :       unit-tests, after invariant, 4d
+    Integration Tests         :       int-tests, after unit-tests, 5d
+    TLA+ Example Verification :       tla-examples, after int-tests, 6d
+    Performance Benchmarks    :       benchmarks, after tla-examples, 4d
+    
+    section Documentation
+    API Documentation         :       api-docs, after benchmarks, 3d
+    Tutorial Examples         :       tutorials, after api-docs, 5d
+    Integration Guide         :       integration, after tutorials, 4d
+    Deployment Documentation  :       deploy-docs, after integration, 3d
+    
+    section Advanced Features
+    Dependent Type Support    :       dep-types, after deploy-docs, 8d
+    Contract Synthesis        :       contracts, after dep-types, 6d
+    AI Property Generation    :       ai-props, after contracts, 7d
+    Proof Assistant Interface :       proof-assist, after ai-props, 8d
+    
+    section Ecosystem Integration
+    TLA+ Toolchain Bridge     :       tla-bridge, after proof-assist, 5d
+    Theorem Prover Connection :       theorem-prover, after tla-bridge, 6d
+    CI/CD Integration         :       cicd, after theorem-prover, 4d
+    Package Distribution      :       packaging, after cicd, 3d
+    
+    section Quality Assurance
+    Code Review Process       :       code-review, after packaging, 2d
+    Security Audit            :       security, after code-review, 4d
+    Performance Optimization  :       optimize, after security, 5d
+    Documentation Review      :       doc-review, after optimize, 3d
+    
+    section Release Preparation
+    Beta Testing              :       beta-test, after doc-review, 6d
+    Bug Fixes                 :       bug-fixes, after beta-test, 4d
+    Final Integration Tests   :       final-tests, after bug-fixes, 3d
+    Release Preparation       :       release-prep, after final-tests, 2d
+    
+    section Community
+    Community Guidelines      :       community, after release-prep, 2d
+    Contribution Documentation:       contrib-docs, after community, 3d
+    Example Projects          :       examples, after contrib-docs, 5d
+    Workshop Materials        :       workshops, after examples, 4d
