@@ -1,0 +1,106 @@
+#+TITLE: Guile Scheme Formal Verification Toolkit
+#+AUTHOR: aygp-dr
+#+DATE: 2025-08-02
+#+PROPERTY: header-args:scheme :session *guile* :results output :exports both
+
+* Guile Scheme Formal Verification Toolkit
+
+A comprehensive toolkit for formal verification using Guile Scheme, integrating TLA+ specifications with executable Scheme implementations.
+
+** Overview
+
+This project bridges formal specification and functional programming by providing:
+
+- TLA+ specification parser and analyzer written in Guile Scheme
+- Model checker integration for Scheme programs
+- Property-based testing framework with shrinking
+- Theorem proving assistance using dependent types
+- Integration with existing TLA+ toolchain
+
+** Intersections with Existing Projects
+
+This toolkit connects with several existing repositories:
+
+- *tla-ai-amplifier*: Provides the TLA+ examples and specifications to verify
+- *tla-plus-tutorial*: Educational foundation for formal methods concepts  
+- *ollama-topic-forge*: LLM-assisted generation of formal properties
+- *strange-loop-cat*: Category theory foundations for type systems
+
+** Features
+
+*** Core Verification Engine
+#+BEGIN_SRC scheme
+;; Property-based testing with automatic shrinking
+(define-property (list-reverse-involution lst)
+  (equal? lst (reverse (reverse lst))))
+
+;; Model checking integration
+(define-model (counter-model)
+  (state (count 0))
+  (transitions
+    (increment (λ (s) (+ s 1)))
+    (decrement (λ (s) (max 0 (- s 1))))))
+#+END_SRC
+
+*** TLA+ Integration
+- Parse TLA+ specifications into Scheme data structures
+- Generate executable Scheme from TLA+ actions
+- Verify temporal properties using custom LTL checker
+- Bridge between formal specs and functional implementations
+
+*** Property Discovery
+- Automatic property generation from function signatures
+- Invariant detection using program analysis
+- Contract synthesis from examples
+- Integration with Ollama for AI-assisted property generation
+
+** Installation
+
+#+BEGIN_SRC bash
+# Clone and set up
+git clone https://github.com/aygp-dr/scheme-formal-verification.git
+cd scheme-formal-verification
+
+# Install dependencies (Guile 3.0+, TLA+ tools)
+make install-deps
+
+# Run verification examples
+make verify-examples
+#+END_SRC
+
+** Usage Examples
+
+*** Basic Property Testing
+#+BEGIN_SRC scheme
+(use-modules (verification property)
+             (verification shrink))
+
+;; Define properties and test them
+(check-property
+  (for-all ([lst (list-of integer)])
+    (= (length lst) (length (reverse lst)))))
+#+END_SRC
+
+*** TLA+ Specification Parsing
+#+BEGIN_SRC scheme
+(use-modules (verification tla-parser))
+
+;; Parse TLA+ specification
+(define counter-spec 
+  (parse-tla-file "specs/Counter.tla"))
+
+;; Generate Scheme implementation
+(tla->scheme counter-spec)
+#+END_SRC
+
+** Architecture
+
+- ~src/verification/~ :: Core verification engine
+- ~src/tla/~ :: TLA+ integration modules  
+- ~src/property/~ :: Property-based testing framework
+- ~examples/~ :: Verification examples and case studies
+- ~specs/~ :: TLA+ specifications for testing
+
+** License
+
+MIT License - bridging formal methods with functional programming.
