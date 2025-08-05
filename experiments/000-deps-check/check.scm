@@ -11,12 +11,16 @@
              (system base compile))
 
 (define (check-guile-version)
-  "Check that we're running Guile 3.0 or later"
+  "Check that we're running Guile 2.2+ or later"
   (let ((version (version)))
     (format #t "✓ Guile version: ~a~%" version)
-    (if (string-prefix? "3." version)
-        (format #t "✓ Guile 3.x detected - compatible~%")
-        (format #t "⚠ Warning: Expected Guile 3.x, got ~a~%" version))))
+    (cond 
+      ((string-prefix? "3." version)
+       (format #t "✓ Guile 3.x detected - fully compatible~%"))
+      ((string-prefix? "2.2." version)
+       (format #t "✓ Guile 2.2.x detected - compatible~%"))
+      (else
+       (format #t "⚠ Warning: Expected Guile 2.2+ or 3.x, got ~a~%" version)))))
 
 (define (check-module module-name)
   "Check if a module can be loaded"
