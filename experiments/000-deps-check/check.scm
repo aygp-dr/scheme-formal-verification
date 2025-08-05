@@ -1,4 +1,5 @@
 #!/usr/bin/env guile
+!#
 ;; Dependency Check for Guile Scheme Formal Verification Toolkit
 ;; Confirms Guile 3.0+ and required modules are available
 
