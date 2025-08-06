@@ -1,7 +1,11 @@
 # Makefile for Guile Scheme Formal Verification Toolkit
 # Provides installation and verification targets for 0.1.0 release
 
-.PHONY: help install-deps verify-examples test clean check-deps
+# Project configuration
+PROJECT_NAME := scheme-formal-verification
+PROJECT_ROOT := $(shell pwd)
+
+.PHONY: help install-deps verify-examples test clean check-deps emacs-session
 
 # Default target
 help:
@@ -14,6 +18,7 @@ help:
 	@echo "  verify-examples - Run all verification examples"
 	@echo "  test           - Run test suite"
 	@echo "  clean          - Clean compiled files and caches"
+	@echo "  emacs-session  - Start tmux session with project-configured Emacs"
 
 # Check system dependencies
 check-deps:
@@ -82,3 +87,23 @@ check-structure:
 			echo "  ✗ $$file (missing)"; \
 		fi; \
 	done
+
+# Emacs development session with tmux
+emacs-session:
+	@echo "Starting tmux session '$(PROJECT_NAME)' with project-configured Emacs..."
+	@# Kill existing session if it exists
+	@tmux kill-session -t $(PROJECT_NAME) 2>/dev/null || true
+	@# Start new detached session with project-specific Emacs
+	@tmux new-session -d -s $(PROJECT_NAME) "emacs -nw -Q -l $(PROJECT_ROOT)/$(PROJECT_NAME).el"
+	@# Get the TTY of the tmux pane
+	@echo "Session started. TTY: $$(tmux list-panes -t $(PROJECT_NAME) -F '#{pane_tty}')"
+	@echo ""
+	@echo "To attach to the session, run:"
+	@echo "  tmux attach -t $(PROJECT_NAME)"
+	@echo ""
+	@echo "Emacs is configured with:"
+	@echo "  - Geiser for Guile Scheme REPL integration"
+	@echo "  - Paredit for structured editing"
+	@echo "  - Org-mode for literate programming"
+	@echo "  - Tramp for remote development"
+	@echo "  - Project-specific keybindings (C-c v: verify, C-c t: test, C-c r: REPL)"
